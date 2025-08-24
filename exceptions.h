@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <string>
 
+//перехватываем наиболее стандартные для программы ошибки, выводим ошибку
+
 class UserAlreadyExists : public std::runtime_error {
 public:
     UserAlreadyExists(const std::string& login)
