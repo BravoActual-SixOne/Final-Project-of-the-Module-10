@@ -12,7 +12,10 @@ public:
     void sendMessage(const std::string& from, const std::string& to, const std::string& text);
     void showMessagesFor(const std::string& login) const;
 
+    std::string getNameByLogin(const std::string& login) const;
+
 private:
     std::vector<User> users;
     std::vector<Message> messages;
+
 };
