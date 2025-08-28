@@ -26,20 +26,30 @@ bool Chat::loginUser(const std::string& login, const std::string& pass) {
     throw UserNotFound(login);
 }
 
+//получаем отоброжаемое имя по логину
+std::string Chat::getNameByLogin(const std::string& login) const {
+    for (auto& u : users) {
+        if (u.getLogin() == login) {
+            return u.getName();
+        }
+    }
+    return "";
+}
+
 //отправка сообщения - от кого, кому, содержимое
-void Chat::sendMessage(const std::string& from, const std::string& to, const std::string& text) {
-    messages.emplace_back(from, to, text);
+void Chat::sendMessage(const std::string& fromName, const std::string& toName, const std::string& text) {
+    messages.emplace_back(fromName, toName, text);
 }
 
 //отображение истории сообщений
-void Chat::showMessagesFor(const std::string& login) const {
-    std::cout << "Сообщения для " << login << ":\n";
+void Chat::showMessagesFor(const std::string& name) const {
+    cout << "📩 Сообщения для " << name << ":\n";
     for (auto& m : messages) {
-        if (m.getReceiver() == login || m.getReceiver() == "all") {
-            std::string target = (m.getReceiver() == "all") ? "всех" : m.getReceiver();
-            std::cout << "[От " << m.getSender() << " для " << target << "]: "
-                << m.getText() << std::endl;
+        if (m.getReceiver() == name || m.getReceiver() == "all") {
+            string target = (m.getReceiver() == "all") ? "всех" : m.getReceiver();
+            cout << "[От " << m.getSender() << " для " << target << "]: "
+                << m.getText() << endl;
         }
     }
-    std::cout << "--------------------------\n";
+    cout << "--------------------------\n";
 }
