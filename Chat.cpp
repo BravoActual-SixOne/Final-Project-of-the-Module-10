@@ -1,5 +1,6 @@
 #include "Chat.h"
 #include <iostream>
+using namespace std;
 
 //Регистрация - принимаем логин и пароль, отоброжаемое имя.
 void Chat::registerUser(const std::string& login, const std::string& pass, const std::string& name) {
@@ -53,3 +54,4 @@ void Chat::showMessagesFor(const std::string& name) const {
     }
     cout << "--------------------------\n";
 }
+
